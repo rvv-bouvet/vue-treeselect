@@ -560,6 +560,14 @@ export default {
     },
 
     /**
+     * Title for the "×" button when `multiple: true`.
+     */
+    selectAllText: {
+      type: String,
+      default: 'Select all',
+    },
+
+    /**
      * Whether to show a children count next to the label of each branch node.
      */
     showCount: {
@@ -1819,6 +1827,48 @@ export default {
           this._blurOnSelect = true
         }
       }
+    },
+
+    selectAll() {
+      if (this.disabled) {
+        return
+      }
+
+      if (this.single) {
+        this.clear()
+      }
+      const nodes = this.visibleOptionIds.map(this.getNode).filter(node => ((this.localSearch.active && node.isMatched) || !this.localSearch.active) && !node.isDisabled && !this.isSelected(node))
+
+      nodes.forEach(node => {
+        const nextState = this.multiple && !this.flat
+          ? this.forest.checkedStateMap[node.id] === UNCHECKED
+          : !this.isSelected(node)
+
+        if (nextState) {
+          this._selectNode(node)
+        }
+
+        this.buildForestState()
+
+        if (nextState) {
+          this.$emit('select', node.raw, this.getInstanceId())
+        } else {
+          this.$emit('deselect', node.raw, this.getInstanceId())
+        }
+
+        if (this.localSearch.active && nextState && (this.single || this.clearOnSelect)) {
+          this.resetSearchQuery()
+        }
+
+        if (this.single && this.closeOnSelect) {
+          this.closeMenu()
+
+          // istanbul ignore else
+          if (this.searchable) {
+            this._blurOnSelect = true
+          }
+        }
+      })
     },
 
     clear() {

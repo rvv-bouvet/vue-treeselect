@@ -79,6 +79,9 @@
 @treeselect-x-color: @treeselect-arrow-color;
 @treeselect-x-color-hover: @md-red-600;
 
+@treeselect-v-size: 8px;
+@treeselect-v-color: @treeselect-arrow-color;
+@treeselect-v-color-hover: @md-blue-600;
 @treeselect-option-bg-highlight: @md-grey-100;
 @treeselect-option-selected-bg: @md-blue-50;
 @treeselect-option-selected-bg-hover: @treeselect-option-selected-bg;
@@ -632,6 +635,22 @@
 .vue-treeselect__x {
   width: @treeselect-x-size;
   height: @treeselect-x-size;
+}
+
+.vue-treeselect__v-container {
+  .narrow-cell();
+  .clickable();
+
+  color: @treeselect-v-color;
+  animation: @treeselect-transition-duration vue-treeselect-animation-fade-in @ease-out-circ;
+
+  &:hover {
+    color: @treeselect-v-color-hover;
+  }
+}
+.vue-treeselect__v {
+  width: @treeselect-v-size;
+  height: @treeselect-v-size;
 }
 
 .vue-treeselect__control-arrow-container {

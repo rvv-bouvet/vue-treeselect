@@ -4,6 +4,7 @@
   import MultiValue from './MultiValue'
   import DeleteIcon from './icons/Delete'
   import ArrowIcon from './icons/Arrow'
+  import SelectAllIcon from './icons/SelectAll'
 
   export default {
     name: 'vue-treeselect--control',
@@ -55,6 +56,18 @@
     },
 
     methods: {
+      renderV() {
+        const { instance } = this
+        const title = instance.selectAllText
+
+        if (!instance.multiple) return null
+
+        return (
+          <div class="vue-treeselect__v-container" title={title} onMousedown={this.handleMouseDownOnV}>
+            <SelectAllIcon class="vue-treeselect__v" />
+          </div>
+        )
+      },
       renderX() {
         const { instance } = this
         const title = instance.multiple ? instance.clearAllText : instance.clearValueText
@@ -83,7 +96,15 @@
           </div>
         )
       },
+      handleMouseDownOnV: onLeftClick(function handleMouseDownOnV(evt) {
 
+        evt.stopPropagation()
+        evt.preventDefault()
+
+        const { instance } = this
+        instance.selectAll();
+
+      }),
       handleMouseDownOnX: onLeftClick(function handleMouseDownOnX(evt) {
         /**
          * We don't use async/await here because we don't want
@@ -144,6 +165,7 @@
       return (
         <div class="vue-treeselect__control" onMousedown={instance.handleMouseDown}>
           <ValueContainer ref="value-container" />
+          {this.renderV()}
           {this.renderX()}
           {this.renderArrow()}
         </div>
