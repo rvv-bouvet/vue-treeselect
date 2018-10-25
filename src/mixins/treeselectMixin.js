@@ -855,8 +855,8 @@ export default {
 
     disabled(newValue) {
       // force close the menu after disabling the control
-      if (newValue && this.menu.isOpen) this.closeMenu()
-      else if (!newValue && !this.menu.isOpen && this.alwaysOpen) this.openMenu()
+      // if (newValue && this.menu.isOpen) this.closeMenu()
+      // else if (!newValue && !this.menu.isOpen && this.alwaysOpen) this.openMenu()
     },
 
     flat() {
@@ -1478,6 +1478,7 @@ export default {
 
     closeMenu() {
       if (!this.menu.isOpen || (!this.disabled && this.alwaysOpen)) return
+      if (this.disabled) return
       this.saveMenuScrollPosition()
       this.menu.isOpen = false
       this.toggleClickOutsideEvent(false)
