@@ -1,5 +1,5 @@
 /*!
- * vue-treeselect v0.0.37 | (c) 2017-2018 Riophae Lee
+ * vue-treeselect v0.0.37 | (c) 2017-2019 Riophae Lee
  * Released under the MIT License.
  * https://vue-treeselect.js.org/
  */
@@ -2851,12 +2851,12 @@ var Arrow_component = normalizeComponent(
 
 Arrow_component.options.__file = "Arrow.vue"
 /* harmony default export */ var Arrow = (Arrow_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/SelectAll.vue?vue&type=template&id=66d21333&
-var SelectAllvue_type_template_id_66d21333_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"xmlns:svg":"http://www.w3.org/2000/svg","xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","viewBox":"0 0 600 600"}},[_c('path',{attrs:{"d":"M 7.6885391,404.6142 C 7.6885391,404.6142 122.85389,534.30185 145.88696,587.27791 L 244.92916,587.27791 C 286.38869,460.59602 447.62018,158.16034 585.8186,52.208207 C 614.45182,15.394067 542.5208,0.19798715 484.4731,24.568517 C 396.98668,61.298507 231.98485,341.73657 201.16633,409.22081 C 157.4035,420.73735 111.33735,335.51499 111.33735,335.51499 L 7.6885391,404.6142 z"}})])}
-var SelectAllvue_type_template_id_66d21333_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/SelectAll.vue?vue&type=template&id=03d07b96&
+var SelectAllvue_type_template_id_03d07b96_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"xmlns:svg":"http://www.w3.org/2000/svg","xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","viewBox":"0 0 600 600"}},[_c('path',{attrs:{"d":"M 7.6885391,404.6142 C 7.6885391,404.6142 122.85389,534.30185 145.88696,587.27791 L 244.92916,587.27791 C 286.38869,460.59602 447.62018,158.16034 585.8186,52.208207 C 614.45182,15.394067 542.5208,0.19798715 484.4731,24.568517 C 396.98668,61.298507 231.98485,341.73657 201.16633,409.22081 C 157.4035,420.73735 111.33735,335.51499 111.33735,335.51499 L 7.6885391,404.6142 z"}})])}
+var SelectAllvue_type_template_id_03d07b96_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/icons/SelectAll.vue?vue&type=template&id=66d21333&
+// CONCATENATED MODULE: ./src/components/icons/SelectAll.vue?vue&type=template&id=03d07b96&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/SelectAll.vue?vue&type=script&lang=js&
 /* harmony default export */ var SelectAllvue_type_script_lang_js_ = ({
@@ -2874,8 +2874,8 @@ var SelectAllvue_type_template_id_66d21333_staticRenderFns = []
 
 var SelectAll_component = normalizeComponent(
   icons_SelectAllvue_type_script_lang_js_,
-  SelectAllvue_type_template_id_66d21333_render,
-  SelectAllvue_type_template_id_66d21333_staticRenderFns,
+  SelectAllvue_type_template_id_03d07b96_render,
+  SelectAllvue_type_template_id_03d07b96_staticRenderFns,
   false,
   null,
   null,
