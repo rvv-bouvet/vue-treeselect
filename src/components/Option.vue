@@ -23,6 +23,12 @@
 
         return node.isBranch && instance.shouldExpand(node)
       },
+
+      shouldShow() {
+        const { instance, node } = this
+
+        return instance.shouldShowOptionInMenu(node)
+      },
     },
 
     methods: {
@@ -34,11 +40,7 @@
           'vue-treeselect__option--selected': instance.isSelected(node),
           'vue-treeselect__option--highlight': node.isHighlighted,
           'vue-treeselect__option--matched': instance.localSearch.active && node.isMatched,
-          'vue-treeselect__option--hide': !instance.shouldShowOptionInMenu(node),
-        }
-
-        if (instance.disableAncestorsOnSearch && instance.localSearch.active && !node.isMatched) {
-          return null
+          'vue-treeselect__option--hide': !this.shouldShow,
         }
 
         return (
@@ -69,6 +71,8 @@
 
       renderArrow() {
         const { instance, node } = this
+
+        if (instance.shouldFlattenOptions && this.shouldShow) return null
 
         if (node.isBranch) {
           const transitionProps = {
@@ -267,6 +271,11 @@
 
     render() {
       const { node } = this
+      const indentLevel = this.instance.shouldFlattenOptions ? 0 : node.level
+      const listItemClass = {
+        'vue-treeselect__list-item': true,
+        [`vue-treeselect__indent-level-${indentLevel}`]: true,
+      }
       const transitionProps = {
         props: {
           name: 'vue-treeselect__list--transition',
@@ -274,7 +283,7 @@
       }
 
       return (
-        <div class={`vue-treeselect__list-item vue-treeselect__indent-level-${node.level}`}>
+        <div class={listItemClass}>
           {this.renderOption()}
           <transition {...transitionProps}>
             {this.renderSubOptionsList()}
