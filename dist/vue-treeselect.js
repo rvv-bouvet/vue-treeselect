@@ -1,5 +1,5 @@
 /*!
- * vue-treeselect v0.0.37 | (c) 2017-2019 Riophae Lee
+ * vue-treeselect v0.0.38 | (c) 2017-2019 Riophae Lee
  * Released under the MIT License.
  * https://vue-treeselect.js.org/
  */
@@ -197,6 +197,7 @@ module.exports = require("vue");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: external "@babel/runtime/helpers/slicedToArray"
 var slicedToArray_ = __webpack_require__(0);
@@ -682,7 +683,7 @@ var instanceId = 0;
       type: String,
       default: ','
     },
-    disableAncestorsOnSearch: {
+    flattenSearchResults: {
       type: Boolean,
       default: false
     },
@@ -973,6 +974,9 @@ var instanceId = 0;
       return this.forest.normalizedOptions.some(function (rootNode) {
         return rootNode.isBranch;
       });
+    },
+    shouldFlattenOptions: function shouldFlattenOptions() {
+      return this.localSearch.active && this.flattenSearchResults;
     }
   },
   watch: {
@@ -1459,7 +1463,7 @@ var instanceId = 0;
     },
     shouldOptionBeIncludedInSearchResult: function shouldOptionBeIncludedInSearchResult(node) {
       if (node.isMatched) return true;
-      if (!this.disableAncestorsOnSearch && node.isBranch && node.hasMatchedDescendants) return true;
+      if (node.isBranch && node.hasMatchedDescendants && !this.flattenSearchResults) return true;
       if (!node.isRootNode && node.parentNode.showAllChildrenOnSearch) return true;
       return false;
     },
@@ -2241,7 +2245,6 @@ var component = normalizeComponent(
   
 )
 
-component.options.__file = "HiddenFields.vue"
 /* harmony default export */ var HiddenFields = (component.exports);
 // EXTERNAL MODULE: external "babel-helper-vue-jsx-merge-props"
 var external_babel_helper_vue_jsx_merge_props_ = __webpack_require__(14);
@@ -2544,7 +2547,6 @@ var Input_component = normalizeComponent(
   
 )
 
-Input_component.options.__file = "Input.vue"
 /* harmony default export */ var Input = (Input_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Placeholder.vue?vue&type=script&lang=js&
 /* harmony default export */ var Placeholdervue_type_script_lang_js_ = ({
@@ -2584,7 +2586,6 @@ var Placeholder_component = normalizeComponent(
   
 )
 
-Placeholder_component.options.__file = "Placeholder.vue"
 /* harmony default export */ var Placeholder = (Placeholder_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SingleValue.vue?vue&type=script&lang=js&
 
@@ -2635,7 +2636,6 @@ var SingleValue_component = normalizeComponent(
   
 )
 
-SingleValue_component.options.__file = "SingleValue.vue"
 /* harmony default export */ var SingleValue = (SingleValue_component.exports);
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/Delete.vue?vue&type=template&id=270e322b&
 var Deletevue_type_template_id_270e322b_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 348.333 348.333"}},[_c('path',{attrs:{"d":"M336.559 68.611L231.016 174.165l105.543 105.549c15.699 15.705 15.699 41.145 0 56.85-7.844 7.844-18.128 11.769-28.407 11.769-10.296 0-20.581-3.919-28.419-11.769L174.167 231.003 68.609 336.563c-7.843 7.844-18.128 11.769-28.416 11.769-10.285 0-20.563-3.919-28.413-11.769-15.699-15.698-15.699-41.139 0-56.85l105.54-105.549L11.774 68.611c-15.699-15.699-15.699-41.145 0-56.844 15.696-15.687 41.127-15.687 56.829 0l105.563 105.554L279.721 11.767c15.705-15.687 41.139-15.687 56.832 0 15.705 15.699 15.705 41.145.006 56.844z"}})])}
@@ -2669,7 +2669,6 @@ var Delete_component = normalizeComponent(
   
 )
 
-Delete_component.options.__file = "Delete.vue"
 /* harmony default export */ var Delete = (Delete_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/MultiValueItem.vue?vue&type=script&lang=js&
 
@@ -2738,7 +2737,6 @@ var MultiValueItem_component = normalizeComponent(
   
 )
 
-MultiValueItem_component.options.__file = "MultiValueItem.vue"
 /* harmony default export */ var MultiValueItem = (MultiValueItem_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/MultiValue.vue?vue&type=script&lang=js&
 
@@ -2815,7 +2813,6 @@ var MultiValue_component = normalizeComponent(
   
 )
 
-MultiValue_component.options.__file = "MultiValue.vue"
 /* harmony default export */ var MultiValue = (MultiValue_component.exports);
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/Arrow.vue?vue&type=template&id=a5978fa4&
 var Arrowvue_type_template_id_a5978fa4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 292.362 292.362"}},[_c('path',{attrs:{"d":"M286.935 69.377c-3.614-3.617-7.898-5.424-12.848-5.424H18.274c-4.952 0-9.233 1.807-12.85 5.424C1.807 72.998 0 77.279 0 82.228c0 4.948 1.807 9.229 5.424 12.847l127.907 127.907c3.621 3.617 7.902 5.428 12.85 5.428s9.233-1.811 12.847-5.428L286.935 95.074c3.613-3.617 5.427-7.898 5.427-12.847 0-4.948-1.814-9.229-5.427-12.85z"}})])}
@@ -2849,7 +2846,6 @@ var Arrow_component = normalizeComponent(
   
 )
 
-Arrow_component.options.__file = "Arrow.vue"
 /* harmony default export */ var Arrow = (Arrow_component.exports);
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icons/SelectAll.vue?vue&type=template&id=03d07b96&
 var SelectAllvue_type_template_id_03d07b96_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{attrs:{"xmlns:svg":"http://www.w3.org/2000/svg","xmlns":"http://www.w3.org/2000/svg","xmlns:xlink":"http://www.w3.org/1999/xlink","viewBox":"0 0 600 600"}},[_c('path',{attrs:{"d":"M 7.6885391,404.6142 C 7.6885391,404.6142 122.85389,534.30185 145.88696,587.27791 L 244.92916,587.27791 C 286.38869,460.59602 447.62018,158.16034 585.8186,52.208207 C 614.45182,15.394067 542.5208,0.19798715 484.4731,24.568517 C 396.98668,61.298507 231.98485,341.73657 201.16633,409.22081 C 157.4035,420.73735 111.33735,335.51499 111.33735,335.51499 L 7.6885391,404.6142 z"}})])}
@@ -2883,7 +2879,6 @@ var SelectAll_component = normalizeComponent(
   
 )
 
-SelectAll_component.options.__file = "SelectAll.vue"
 /* harmony default export */ var SelectAll = (SelectAll_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Control.vue?vue&type=script&lang=js&
 
@@ -3037,7 +3032,6 @@ var Control_component = normalizeComponent(
   
 )
 
-Control_component.options.__file = "Control.vue"
 /* harmony default export */ var Control = (Control_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tip.vue?vue&type=script&lang=js&
 /* harmony default export */ var Tipvue_type_script_lang_js_ = ({
@@ -3089,9 +3083,9 @@ var Tip_component = normalizeComponent(
   
 )
 
-Tip_component.options.__file = "Tip.vue"
 /* harmony default export */ var Tip = (Tip_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Option.vue?vue&type=script&lang=js&
+
 
 
 
@@ -3111,6 +3105,11 @@ var Option = {
       var instance = this.instance,
           node = this.node;
       return node.isBranch && instance.shouldExpand(node);
+    },
+    shouldShow: function shouldShow() {
+      var instance = this.instance,
+          node = this.node;
+      return instance.shouldShowOptionInMenu(node);
     }
   },
   methods: {
@@ -3124,13 +3123,8 @@ var Option = {
         'vue-treeselect__option--selected': instance.isSelected(node),
         'vue-treeselect__option--highlight': node.isHighlighted,
         'vue-treeselect__option--matched': instance.localSearch.active && node.isMatched,
-        'vue-treeselect__option--hide': !instance.shouldShowOptionInMenu(node)
+        'vue-treeselect__option--hide': !this.shouldShow
       };
-
-      if (instance.disableAncestorsOnSearch && instance.localSearch.active && !node.isMatched) {
-        return null;
-      }
-
       return h("div", {
         "class": optionClass,
         on: {
@@ -3152,6 +3146,7 @@ var Option = {
       var h = this.$createElement;
       var instance = this.instance,
           node = this.node;
+      if (instance.shouldFlattenOptions && this.shouldShow) return null;
 
       if (node.isBranch) {
         var transitionProps = {
@@ -3333,13 +3328,19 @@ var Option = {
   render: function render() {
     var h = arguments[0];
     var node = this.node;
+    var indentLevel = this.instance.shouldFlattenOptions ? 0 : node.level;
+
+    var listItemClass = defineProperty_default()({
+      'vue-treeselect__list-item': true
+    }, "vue-treeselect__indent-level-".concat(indentLevel), true);
+
     var transitionProps = {
       props: {
         name: 'vue-treeselect__list--transition'
       }
     };
     return h("div", {
-      "class": "vue-treeselect__list-item vue-treeselect__indent-level-".concat(node.level)
+      "class": listItemClass
     }, [this.renderOption(), h("transition", transitionProps, [this.renderSubOptionsList()])]);
   }
 };
@@ -3365,7 +3366,6 @@ var Option_component = normalizeComponent(
   
 )
 
-Option_component.options.__file = "Option.vue"
 /* harmony default export */ var components_Option = (Option_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Menu.vue?vue&type=script&lang=js&
 
@@ -3661,7 +3661,6 @@ var Menu_component = normalizeComponent(
   
 )
 
-Menu_component.options.__file = "Menu.vue"
 /* harmony default export */ var Menu = (Menu_component.exports);
 // EXTERNAL MODULE: external "vue"
 var external_vue_ = __webpack_require__(15);
@@ -3840,7 +3839,6 @@ var MenuPortal_component = normalizeComponent(
   
 )
 
-MenuPortal_component.options.__file = "MenuPortal.vue"
 /* harmony default export */ var MenuPortal = (MenuPortal_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Treeselect.vue?vue&type=script&lang=js&
 
@@ -3861,12 +3859,10 @@ MenuPortal_component.options.__file = "MenuPortal.vue"
         'vue-treeselect--disabled': this.disabled,
         'vue-treeselect--focused': this.trigger.isFocused,
         'vue-treeselect--has-value': this.hasValue,
-        'vue-treeselect--is-searching': this.trigger.searchQuery.length > 0,
         'vue-treeselect--open': this.menu.isOpen,
         'vue-treeselect--open-above': this.menu.placement === 'top',
         'vue-treeselect--open-below': this.menu.placement === 'bottom',
         'vue-treeselect--branch-nodes-disabled': this.disableBranchNodes,
-        'vue-treeselect--search-ancestors-disabled': this.disableAncestorsOnSearch,
         'vue-treeselect--append-to-body': this.appendToBody
       };
     }
@@ -3906,7 +3902,6 @@ var Treeselect_component = normalizeComponent(
   
 )
 
-Treeselect_component.options.__file = "Treeselect.vue"
 /* harmony default export */ var Treeselect = (Treeselect_component.exports);
 // EXTERNAL MODULE: ./src/style.less
 var style = __webpack_require__(16);
@@ -3926,7 +3921,7 @@ var style = __webpack_require__(16);
 
 
 var __esModule = true;
-var VERSION = "0.0.37";
+var VERSION = "0.0.38";
 
 /***/ })
 /******/ ]);
